@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------\\
 
 missionPhase = 0; // Descripció al final de l'apartat Variables
-objAlive = 6; // Variable per comptar els objectius vius 
+objAlive = 2; // Variable per comptar els objectius vius (2-Tots, 1-De 1 a 5, 0-Cap)
 
 //------------------------------------------------------------------------\\
 // --- missionPhase = 0; --- Inici Partida -------------------------------\\
@@ -37,8 +37,6 @@ enableSaving [false, false];
 //------------------------------------------------------------------------\\
 
 briefing = [] execVM "scripts\briefing\briefing.sqf";
-
-
 
 //------------------------------------------------------------------------\\
 //-------------------------------CREAR TASCA------------------------------\\

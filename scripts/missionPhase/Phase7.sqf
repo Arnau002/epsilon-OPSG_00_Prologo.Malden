@@ -16,13 +16,8 @@
 //--------------ELIMINAR TRIGGERS DE CONTROL DELS OBJECTIUS---------------\\
 //------------------------------------------------------------------------\\
 
-deleteVehicle obj1death;
-deleteVehicle obj2death;
-deleteVehicle obj3death;
-deleteVehicle obj4death;
-deleteVehicle obj5death;
-deleteVehicle obj6death;
-
+deleteVehicle all_obj_dead;
+deleteVehicle obj_dead;
 
 //------------------------------------------------------------------------\\
 //--------------SEPARAR ENTRE FINAL ESTÀNDARD O ALTERNATIU----------------\\
@@ -40,12 +35,6 @@ if (triggerActivated phase6) then {
 call BIS_fnc_taskCreate;
 
 waitUntil {triggerActivated bomb_extO};
-
-//------------------------------------------------------------------------\\
-//---------------------ELIMINAR RADIO (MÚSICA PIANO)----------------------\\
-//------------------------------------------------------------------------\\
-
-deleteVehicle radio;
 
 //------------------------------------------------------------------------\\
 //------------------BOMBARDEJAR ZONA EXTRACCIÓ OBJECTIUS------------------\\
@@ -86,20 +75,11 @@ _target1 = playableUnits call BIS_fnc_selectRandom;
 _target2 = playableUnits call BIS_fnc_selectRandom;
 _target3 = playableUnits call BIS_fnc_selectRandom;
 
-arty1 doArtilleryFire[[1952,3876], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2401,4128], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2968,3812], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2832,3445], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2486,3608], "rhs_mag_3vs25m_10", 1]; 
 //------------------------------------------------------------------------\\
 //---------------------------REPRODUIR MUSICA-----------------------------\\
 //------------------------------------------------------------------------\\
  
- sleep 10;
+ sleep 30;
  
 playMusic "bombzonemusic";
 
@@ -108,7 +88,22 @@ playMusic "bombzonemusic";
 //------------------------------------------------------------------------\\
 //--------------------------Musica 010 (Bengales)-------------------------\\
 
-sleep 39;
+sleep 8;
+flr1 = "F_40mm_White" createvehicle [1952,3876,300];
+flr1 setVelocity [0,0,-1];
+sleep 5;
+flr2 = "F_40mm_White" createvehicle [2401,4128,300];
+flr2 setVelocity [0,0,-1];
+sleep 5;
+flr3 = "F_40mm_White" createvehicle [2968,3812,300];
+flr3 setVelocity [0,0,-1];
+sleep 5;
+flr4 = "F_40mm_White" createvehicle [2832,3445,300];
+flr4 setVelocity [0,0,-1];
+sleep 5;
+flr5 = "F_40mm_White" createvehicle [2486,3608,300];
+flr5 setVelocity [0,0,-1];
+sleep 11;
 
 //------------------------Musica 39 (Explosions 1)------------------------\\
 
@@ -127,19 +122,13 @@ sleep 1;
 _trgM3 = createTrigger ["EmptyDetector", [2412,3722]];
 _trgM3 setTriggerArea [350, 350, 0, false];
 _trgM3 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 250, 8, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
+sleep 40;
+flr6 = "F_40mm_White" createvehicle [2613,3063,250];
+flr6 setVelocity [0,0,-1];
 sleep 5;
-arty1 doArtilleryFire[[2613,3063], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1991,3494], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2216,2954], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2609,3385], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2100,3183], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 setVehicleAmmo 1;
-sleep 16;
+flr7 = "F_40mm_White" createvehicle [1991,3494,250];
+flr7 setVelocity [0,0,-1];
+sleep 1;
 
 //------------------------Musica 51 (Explosions 2)------------------------\\
 
@@ -155,6 +144,10 @@ _trgM6 = createTrigger ["EmptyDetector", [1989,3455]];
 _trgM6 setTriggerArea [300, 300, 0, false];
 _trgM6 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 200, 5, 4] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
 sleep 3;
+
+flr8 = "F_40mm_White" createvehicle [2216,2954,250];
+flr8 setVelocity [0,0,-1];
+
 _trgM7 = createTrigger ["EmptyDetector", getPos _target2];
 _trgM7 setTriggerArea [120, 120, 0, false];
 _trgM7 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
@@ -162,7 +155,13 @@ sleep 2;
 _trgM8 = createTrigger ["EmptyDetector", [2407,3497]];
 _trgM8 setTriggerArea [120, 120, 0, false];
 _trgM8 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
-sleep 11;
+sleep 2;
+flr9 = "F_40mm_White" createvehicle [2609,3385,250];
+flr9 setVelocity [0,0,-1];
+sleep 4;
+flr10 = "F_40mm_White" createvehicle [2100,3183,250];
+flr10 setVelocity [0,0,-1];
+sleep 5;
 
 //------------------------Musica 18 (Explosions 1)------------------------\\
 
@@ -177,17 +176,7 @@ sleep 1;
 _trgM11 = createTrigger ["EmptyDetector", [2390,3410]];
 _trgM11 setTriggerArea [250, 250, 0, false];
 _trgM11 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 3, 10] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
-sleep 5;
-arty1 doArtilleryFire[[2500,3114], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2203,2952], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1870,2797], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2033,3166], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2482,2813], "rhs_mag_3vs25m_10", 1]; 
-sleep 4;
+sleep 29;
 
 //------------------------Musica 31 (Explosions 2)------------------------\\
 
@@ -206,7 +195,22 @@ sleep 3;
 _trgM15 = createTrigger ["EmptyDetector", getPos _target3];
 _trgM15 setTriggerArea [120, 120, 0, false];
 _trgM15 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
-sleep 42;
+sleep 9;
+flr11 = "F_40mm_White" createvehicle [2500,3114,200];
+flr11 setVelocity [0,0,-1];
+sleep 5;
+flr12 = "F_40mm_White" createvehicle [2203,2952,200];
+flr12 setVelocity [0,0,-1];
+sleep 5;
+flr13 = "F_40mm_White" createvehicle [1870,2797,200];
+flr13 setVelocity [0,0,-1];
+sleep 5;
+flr14 = "F_40mm_White" createvehicle [2033,3166,200];
+flr14 setVelocity [0,0,-1];
+sleep 5;
+flr15 = "F_40mm_White" createvehicle [2482,2813,200];
+flr15 setVelocity [0,0,-1];
+sleep 13;
 
 //------------------------Musica 47 (Explosions 1)------------------------\\
 
@@ -260,47 +264,48 @@ sleep 1;
 _trgHE9 = createTrigger ["EmptyDetector", getPos _target1];
 _trgHE9 setTriggerArea [120, 120, 0, false];
 _trgHE9 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3of56"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
+sleep 43;
+flr16 = "F_40mm_White" createvehicle [2228,3190,250];
+flr16 setVelocity [0,0,-1];
+sleep 4;
+flr17 = "F_40mm_White" createvehicle [2045,2922,250];
+flr17 setVelocity [0,0,-1];
 sleep 5;
-arty1 doArtilleryFire[[2228,3190], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2045,2922], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2354,2510], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1779,2724], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2404,2803], "rhs_mag_3vs25m_10", 1]; 
-sleep 1;
-arty1 setVehicleAmmo 1;
-sleep 1;
-arty1 doArtilleryFire[[2045,2425], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2061,2072], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1756,2247], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2335,2270], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1733,2527], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
+flr18 = "F_40mm_White" createvehicle [2354,2510,250];
+flr18 setVelocity [0,0,-1];
 
 //--------------------------Musica 60 (Bengales)--------------------------\\
 
-sleep 50;
+sleep 5;
+flr19 = "F_40mm_White" createvehicle [1779,2724,250];
+flr19 setVelocity [0,0,-1];
+sleep 5;
+flr20 = "F_40mm_White" createvehicle [2404,2803,250];
+flr20 setVelocity [0,0,-1];
+sleep 5;
+flr21 = "F_40mm_White" createvehicle [2045,2425,250];
+flr21 setVelocity [0,0,-1];
+sleep 5;
+flr22 = "F_40mm_White" createvehicle [2061,2072,250];
+flr22 setVelocity [0,0,-1];
+sleep 5;
+flr23 = "F_40mm_White" createvehicle [1756,2247,250];
+flr23 setVelocity [0,0,-1];
+sleep 5;
+flr24 = "F_40mm_White" createvehicle [2335,2270,250];
+flr24 setVelocity [0,0,-1];
+sleep 5;
+flr25 = "F_40mm_White" createvehicle [1733,2527,250];
+flr25 setVelocity [0,0,-1];
 
-arty1 doArtilleryFire[[1970,2136], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1962,2512], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1704,2329], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2350,2462], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[2236,2180], "rhs_mag_3vs25m_10", 1]; 
-sleep 1;
-arty1 setVehicleAmmo 1;
+sleep 53;
 
-sleep 19;
+flr26 = "F_40mm_White" createvehicle [1970,2136,250];
+flr26 setVelocity [0,0,-1];
+sleep 2;
+
+
+
 
 //------------------------Musica 90 (Explosions 1)------------------------\\
 
@@ -319,6 +324,10 @@ sleep 1;
 _trgM22 = createTrigger ["EmptyDetector", [2358,2366]];
 _trgM22 setTriggerArea [300, 300, 0, false];
 _trgM22 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 5, 6] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
+
+flr27 = "F_40mm_White" createvehicle [1962,2512,250];
+flr27 setVelocity [0,0,-1];
+
 sleep 1;
 _trgM23 = createTrigger ["EmptyDetector", getPos _target1];
 _trgM23 setTriggerArea [110, 110, 0, false];
@@ -331,7 +340,16 @@ sleep 1;
 _trgM25 = createTrigger ["EmptyDetector", getPos _target3];
 _trgM25 setTriggerArea [120, 120, 0, false];
 _trgM25 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
-sleep 24;
+sleep 2;
+flr28 = "F_40mm_White" createvehicle [1704,2329,250];
+flr28 setVelocity [0,0,-1];
+sleep 5;
+flr29 = "F_40mm_White" createvehicle [2350,2462,250];
+flr29 setVelocity [0,0,-1];
+sleep 5;
+flr30 = "F_40mm_White" createvehicle [2236,2180,250];
+flr30 setVelocity [0,0,-1];
+sleep 12;
 
 //------------------------Musica 30 (Explosions 2)------------------------\\
 
@@ -366,22 +384,27 @@ sleep 1;
 _trgM33 = createTrigger ["EmptyDetector", [1877,2167]];
 _trgM33 setTriggerArea [100, 100, 0, false];
 _trgM33 setTriggerStatements ["({_x inArea thisTrigger} count allPlayers) == 0", "[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;" ,""];
-sleep 3;
-arty1 doArtilleryFire[[1882,2059], "rhs_mag_3vs25m_10", 1]; 
-sleep 5;
-arty1 doArtilleryFire[[1644,2210], "rhs_mag_3vs25m_10", 1]; 
-
+sleep 8;
 
 //--------------------------Musica 15 (Bengales)--------------------------\\
 
+sleep 30;
+flr31 = "F_40mm_White" createvehicle [1882,2059,300];
+flr31 setVelocity [0,0,-1];
 sleep 5;
-arty1 doArtilleryFire[[2174,2031], "rhs_mag_3vs25m_10", 1]; 
+flr32 = "F_40mm_White" createvehicle [1644,2210,300];
+flr32 setVelocity [0,0,-1];
 sleep 5;
-arty1 doArtilleryFire[[1545,2370], "rhs_mag_3vs25m_10", 1]; 
+flr33 = "F_40mm_White" createvehicle [2174,2031,300];
+flr33 setVelocity [0,0,-1];
 sleep 5;
-arty1 doArtilleryFire[[2481,2065], "rhs_mag_3vs25m_10", 1];
+flr34 = "F_40mm_White" createvehicle [1545,2370,300];
+flr34 setVelocity [0,0,-1];
+sleep 5;
+flr35 = "F_40mm_White" createvehicle [2481,2065,300];
+flr35 setVelocity [0,0,-1];
 
-//----------------------------Musica 15 (Final)---------------------------\\
+//----------------------------Musica 50 (Final)---------------------------\\
 
 //------------------------------------------------------------------------\\
 //-----------------------PASSAR A SEGÜENT FASE (8)------------------------\\

@@ -21,7 +21,7 @@ class Header
 //------------------------------------------------------------------------\\
 
 onLoadName = "Operation Shield Gate";                                      // Nom de la missió (apareix en gran)
-onLoadMission = "Always Faithful, Always Forward";                         // Descripció breu de la missió
+onLoadMission = "Always Faithful, Always Forward - MARSOC";                // Descripció breu de la missió
 author = "CE_Arnau002";                                                    // Autor
 loadScreen = "textures\portada.jpg";                                       // Imatge mentre es carrega la missió
 overviewPicture = "textures\portada.jpg";                                  // Imatge que es mostra al seleccionar la missió.
@@ -33,7 +33,7 @@ overviewText = "Misión de Captura y Extracción de Prisioneros, se recomienda j
 //--------------------------SELECCIONAR RESPAWN---------------------------\\
 //------------------------------------------------------------------------\\
  
- respawn = 2; 
+respawn = 2; 
 respawnDelay = 99999; 
  
 //------------------------------------------------------------------------\\
@@ -145,18 +145,6 @@ tracks[]={};
  { 
  name = "defeatymusic"; 
  sound[] = {"\music\defeat_music.ogg", db+10, 1.0};
- };
-};
-
-class CfgSounds
-{
-sounds[]={};
-
- class pianomusic
- { 
- name = "pianomusic"; 
- sound[] = {"\music\piano_music.ogg", db+20, 1.0};
- titles[] = {0,""};
  };
 };
 
