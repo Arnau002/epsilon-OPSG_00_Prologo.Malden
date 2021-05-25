@@ -1,0 +1,232 @@
+//========================================================================\\
+// Arxiu: description.ext                                                 \\                               
+// Autor: CE_Arnau002                                                     \\                               
+// Versió: 0.1                                                            \\                               
+// Creació del Document: 29/03/2020                                       \\                               
+//========================================================================\\
+
+//------------------------------------------------------------------------\\
+//--------------------------HEADER DE LA MISSIÓ---------------------------\\
+//------------------------------------------------------------------------\\
+
+class Header
+{
+	gameType = Coop;     // Mode de joc: https://community.bistudio.com/wiki/Multiplayer_Game_Types
+	minPlayers = 1;      // Nombre mínim de jugadors
+	maxPlayers = 21;     // Nombre màxim de jugadors
+};
+
+//------------------------------------------------------------------------\\
+//--------------------------PANTALLA DE CÀRREGA---------------------------\\
+//------------------------------------------------------------------------\\
+
+onLoadName = "Operation Shield Gate";                                      // Nom de la missió (apareix en gran)
+onLoadMission = "Always Faithful, Always Forward";                         // Descripció breu de la missió
+author = "CE_Arnau002";                                                    // Autor
+loadScreen = "textures\portada.jpg";                                       // Imatge mentre es carrega la missió
+overviewPicture = "textures\portada.jpg";                                  // Imatge que es mostra al seleccionar la missió.
+                                                                           // Ha d'estar en format .paa i aspecte 2:1
+overviewText = "Misión de Captura y Extracción de Prisioneros, se recomienda jugar con al menos 10 personas";           
+ // Text que es mostra al seleccionar la missó.
+
+//------------------------------------------------------------------------\\
+//--------------------------SELECCIONAR RESPAWN---------------------------\\
+//------------------------------------------------------------------------\\
+ 
+ respawn = 2; 
+respawnDelay = 99999; 
+ 
+//------------------------------------------------------------------------\\
+//------------------TÍTOLS I DEFINICIONS DE LES TASQUES-------------------\\
+//------------------------------------------------------------------------\\
+
+class CfgTaskDescriptions
+{
+	class tsk_in1
+	{
+		title = Inserción Mike;
+		description =;
+	};
+	
+	class tsk_in2
+	{
+		title = Inserción Sierra;
+		description =;
+	};
+	
+	class tsk_in3
+	{
+		title = Inserción Victor;
+		description =;
+	};
+	
+	class tsk_capt
+	{
+		title = Capturar Objetivos;
+		description = Asegurar el área y capturar a las personas asistentes a la reunión, no sabemos el número exacto pero nuestras aproximaciones son de 3 a 5.;
+	};
+	
+	class tsk_intel
+	{
+		title = Intel Recolectada;
+		description = Buen trabajo. Una vez analizada nos dará información sobre los planes del gobierno y sus aliados.;
+	};
+	
+	class tsk_ext
+	{
+		title = Extraer Equipo;
+		description = No nos esperábamos encontrar representantes rusos a la reunión, nuestra inteligencia nos indicaba que sus contactos estaban aún en una fase inicial. Esperemos que la reacción rusa no sea demasiado contundente, en todo caso si veis fuerzas rusas en el área sólo tenéis permiso para disparar si ellos lo hacen primero. El helicóptero que os llevará a vosotros y a los prisioneros está de camino, en el mapa está marcada la zona de aterrizaje. Es un helicóptero grande, por lo tanto, os recomiendo dejar espacio para que pueda aterrizar con seguridad.;
+	};
+		
+	class tsk_extO
+	{
+		title = Extraer Prisioneros;
+		description = Nos va a ser imposible enviar otro helicóptero  hasta tener controlado el espacio aéreo, sabemos que el enemigo se está movilizando y se dirige a vuestra posición. Hemos designado otra zona para realizar la extracción, esta vez de solo los prisioneros, en un helicóptero más pequeño. Iremos actualizando la información según nos lleguen más informes.;
+	};
+		
+	class tsk_mExtP
+	{
+		title = Desplazarse al punto de Extracción;
+		description = En el mapa está marcado el  punto donde os recogerán los helicópteros a vosotros, es el único lugar de la isla fuera del alcance de la artillería, ahora que no tenéis a los prisioneros el enemigo no tendrá ningún problema en usarla. Inteligencia informa que de camino al punto encontrareis una área con restos de minas AT usadas en los combates posteriores al golpe de estado, encontrareis señales que delimitan el área.;
+	};
+	
+	class tsk_mExtPAlt
+	{
+		title = Desplazarse al punto de Extracción;
+		description = Si no podéis mantener con vida a vuestro objetivo al menos intentad salir con vida vosotros. Dirigiros el más rápido posible a vuestro  punto de extracción, es el único lugar de la isla fuera del alcance de su artillería, ahora que no tenéis a los prisioneros el enemigo no tendrá ningún problema en usarla. Inteligencia informa que de camino al punto encontrareis una área con restos de minas AT usadas en los combates posteriores al golpe de estado, encontrareis señales que delimitan el área.;
+	};
+	
+	class tsk_extP
+	{
+		title = Extraer Equipo;
+		description = Ahora sólo queda la parte más fácil: subir a los helicópteros que os llevarán de vuelta al portaaviones. Comandancia ha ordenado un ataque preventivo contra objetivos estratégicos del enemigo, oficialmente ya estamos en guerra.;
+	};
+};
+
+//------------------------------------------------------------------------\\
+//----------------------------MÚSIQUES I SONS-----------------------------\\
+//------------------------------------------------------------------------\\
+
+class CfgMusic
+{
+tracks[]={};
+
+ class helimusic
+ { 
+ name = "helimusic"; 
+ sound[] = {"\music\heli_music.ogg", db+10, 1.0};
+ };
+ 
+ class heli4music
+ { 
+ name = "heli4music"; 
+ sound[] = {"\music\heli4_music.ogg", db+10, 1.0};
+ };
+ 
+  class bombzonemusic
+ { 
+ name = "bombzonemusic"; 
+ sound[] = {"\music\bomb_zone_music.ogg", db+00, 1.0};
+ }; 
+  
+  class extractionmusic
+ { 
+ name = "extractionmusic"; 
+ sound[] = {"\music\extraction_music.ogg", db+20, 1.0};
+ }; 
+
+ class victorymusic
+ { 
+ name = "victorymusic"; 
+ sound[] = {"\music\victory_music.ogg", db+10, 1.0};
+ };
+ 
+   class defeatmusic
+ { 
+ name = "defeatymusic"; 
+ sound[] = {"\music\defeat_music.ogg", db+10, 1.0};
+ };
+};
+
+class CfgSounds
+{
+sounds[]={};
+
+ class pianomusic
+ { 
+ name = "pianomusic"; 
+ sound[] = {"\music\piano_music.ogg", db+20, 1.0};
+ titles[] = {0,""};
+ };
+};
+
+//------------------------------------------------------------------------\\
+//--------------------------FINALS DE LA MISSIÓ---------------------------\\
+//------------------------------------------------------------------------\\
+
+class CfgDebriefing
+{  
+	class PlayDead1
+	{
+		title = "Misión Cancelada";
+		subtitle = "Incompetencia? Mala suerte?";
+		description = "Inexplicablemente los soldados asignados han muerto antes de iniciar la misión, se abrirá una investigación para resolver el misterio.";
+		pictureBackground = "";
+		picture = "KIA";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+	class PlayDead2
+	{
+		title = "Misión Fallida";
+		subtitle = "Equipo caído en combate";
+		description = "Equipo eliminado en el transcurso de la misión, se iniciarán los trámites de repatriación de los cadáveres.";
+		pictureBackground = "";
+		picture = "KIA";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+	class ObjDead
+	{
+		title = "Misión Fallida";
+		subtitle = "Asalto con demasiada fuerza";
+		description = "Objetivos eliminados, se investigará para descubrir quién es el responsable del fracaso.";
+		pictureBackground = "";
+		picture = "loc_Church";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+	class PlayAlive_6
+	{
+		title = "Misión Completada";
+		subtitle = "Los miembros del equipo serán condecorados";
+		description = "Todos los objetivos han sido capturados. Por ahora Rusia niega cualquier relación con el incidente entre un helicóptero americano y un avión ruso.";
+		pictureBackground = "";
+		picture = "mil_flag";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+	class PlayAlive_1
+	{
+		title = "Misión Completada";
+		subtitle = "Aumenta  la tensión internacional";
+		description = "Los objetivos han sido capturados aunque no todos han llegado con vida al portaaviones. Rusia niega cualquier relación con el incidente entre un helicóptero americano y un avión ruso pero promete desplegar tropas en la isla para defender a lo que ellos definen como Gobierno Legítimo.";
+		pictureBackground = "";
+		picture = "mil_warning";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+	class PlayAlive_0
+	{
+		title = "Misión Completada";
+		subtitle = "De Camino a otro conflicto global";
+		description = "Los objetivos han sido capturados aunque ninguno ha llegado con vida al portaaviones. Rusia afirma que el incidente entre un helicóptero americano y un avión ruso es solo el inicio y promete ayudar a los rebeldes con los recursos que sean necesarios.";
+		pictureBackground = "";
+		picture = "loc_Church";
+		pictureColor[] = { 1, 1, 1, 1 };
+	};
+	
+};
+
+//------------------------------------------------------------------------\\
+//--------------------------FINAL DEL DOCUMENT----------------------------\\
