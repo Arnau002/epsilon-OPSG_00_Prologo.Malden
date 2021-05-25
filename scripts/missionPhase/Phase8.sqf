@@ -4,7 +4,9 @@
 // Versió: 0.1                                                            \\                               
 // Creació del Document: 08/04/2020                                       \\                              
 // Descripció: Entrada helicòpters 1, 2 i 3 per extreure Jugadors         \\
-// Canvis: 0.1 (2020/04/08) Versió inicial.                               \\                               
+// Canvis: 0.1 (2020/04/08) Versió inicial.                               \\
+//         0.2 (2020/11/03) Passar el missage d'arribada helis a l'editor \\ 
+//                          Eliminar els waitUntil                        \\                               
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -13,17 +15,8 @@
 //------------------------------------------------------------------------\\
 
 //------------------------------------------------------------------------\\
-//-------------------MOSTRAR MISSATGE DE L'HELICÒPTER---------------------\\
-//------------------------------------------------------------------------\\
-
-hq sidechat "Acaban de salir los helicopteros, llegaran en pocos minutos";
-
-
-//------------------------------------------------------------------------\\
 //----------------COMPLETAR TASQUES I ASSIGNAR LA SEGÜENT-----------------\\
 //------------------------------------------------------------------------\\
-
-waitUntil {triggerActivated play_on_ext};
 
 if (triggerActivated phase6) then {["tsk_mExtP","SUCCEEDED"] call BIS_fnc_taskSetState;}
 

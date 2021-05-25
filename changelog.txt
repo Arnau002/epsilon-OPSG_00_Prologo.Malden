@@ -1,3 +1,13 @@
+0.3: 5 de novembre de 2020
+
+-Eliminació dels ";" a les condicions dels triggers
+-Canvi en la simulació de tots els triggers a "Server Only"
+-Correcció de la multiplicació d'artilleria en triggers generats per script
+-Afegir mines, canviar el model de AT Mine a TM-62M i enterrar-les
+-Reestructurar codi per eliminar els waitUntil (modificar Phase6.sqf, Phase7.sqf i Phase8.sqf, crear Phase4-7.sqf)
+-Canviar comportament de heli5 a Careless i treure al pilot l'habilitat de manipular llums
+-Canviar la manera com s'afegeixen els jugadors a l'array per assignar la zona d'inserció de cada un
+
 0.2: 14 de setembre de 2020
 
 -Adaptació de la partida a ACE Legacy

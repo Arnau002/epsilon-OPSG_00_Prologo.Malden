@@ -19,11 +19,12 @@ objAlive = 2; // Variable per comptar els objectius vius (2-Tots, 1-De 1 a 5, 0-
 // --- missionPhase = 3; --- Objectiu Capturat (Intent Extracció) --------\\
 // --- missionPhase = 4; --- Desplaçament a Zona extracció presoners -----\\
 // --- missionPhase = 5; --- Arribada a Zona extracció presoners ---------\\
-// --- missionPhase = 6; --- Extracció presoners -------------------------\\
-// --- missionPhase = 7; --- Desplaçament a zona extracció jugadors ------\\
+// --- missionPhase = 6; --- Extracció presoners i bombardeig de la zona--\\
+// --- missionPhase = 7; --- Bombardeig al camp de mines -----------------\\
 // --- missionPhase = 8; --- Arribada a zona extracció jugadors ----------\\
 // --- missionPhase = 9; --- Extracció jugadors --------------------------\\
 // --- missionPhase = 10; -- Final Partida -------------------------------\\
+// Si els objectius moren a la fase 4 la 5 i 6 no s'activen - Phase4-7.sqf\\
 //------------------------------------------------------------------------\\
 
 //------------------------------------------------------------------------\\
@@ -104,6 +105,60 @@ myaction = laptop addAction ["Ordenador", "scripts\intel.sqf"];
 if ( isServer ) then {
 	cc_script_zeus = [] execVM "scripts\zeus\zeus_init.sqf"
 };
+
+//------------------------------------------------------------------------\\
+//------------DESACTIVA LA SIMULACIÓ DELS TRIGGERS D'ARTILLERIA-----------\\
+//------------------------------------------------------------------------\\
+
+trgM1 enableSimulationGlobal false;
+trgM2 enableSimulationGlobal false;
+trgM3 enableSimulationGlobal false;
+
+trgM4 enableSimulationGlobal false;
+trgM5 enableSimulationGlobal false;
+trgM6 enableSimulationGlobal false;
+trgM7 enableSimulationGlobal false;
+trgM8 enableSimulationGlobal false;
+
+trgM9 enableSimulationGlobal false;
+trgM10 enableSimulationGlobal false;
+trgM11 enableSimulationGlobal false;
+
+trgM12 enableSimulationGlobal false;
+trgM13 enableSimulationGlobal false;
+trgM14 enableSimulationGlobal false;
+trgM15 enableSimulationGlobal false;
+
+trgM16 enableSimulationGlobal false;
+trgM17 enableSimulationGlobal false;
+trgM18 enableSimulationGlobal false;
+
+trgHE1 enableSimulationGlobal false;
+trgHE2 enableSimulationGlobal false;
+trgHE3 enableSimulationGlobal false;
+trgHE4 enableSimulationGlobal false;
+trgHE5 enableSimulationGlobal false;
+trgHE6 enableSimulationGlobal false;
+trgHE7 enableSimulationGlobal false;
+trgHE8 enableSimulationGlobal false;
+trgHE9 enableSimulationGlobal false;
+
+trgM19 enableSimulationGlobal false;
+trgM20 enableSimulationGlobal false;
+trgM21 enableSimulationGlobal false;
+trgM22 enableSimulationGlobal false;
+trgM23 enableSimulationGlobal false;
+trgM24 enableSimulationGlobal false;
+trgM25 enableSimulationGlobal false;
+
+trgM26 enableSimulationGlobal false;
+trgM27 enableSimulationGlobal false;
+trgM28 enableSimulationGlobal false;
+trgM29 enableSimulationGlobal false;
+trgM30 enableSimulationGlobal false;
+trgM31 enableSimulationGlobal false;
+trgM32 enableSimulationGlobal false;
+trgM33 enableSimulationGlobal false;
 
 //------------------------------------------------------------------------\\
 //--------------------------FINAL DEL DOCUMENT----------------------------\\

@@ -3,13 +3,18 @@
 // Autor: CE_Arnau002                                                     \\                              
 // Versió: 0.1                                                            \\                               
 // Creació del Document: 04/04/2020                                       \\                              
-// Descripció: Extracció de Presoners en helicòpter 5                     \\
-// Canvis: 0.1 (2020/04/04) Versió inicial.                               \\                               
+// Descripció: Extracció presoners, bombardeig de la zona i crear tasca   \\
+// Canvis: 0.1 (2020/04/04) Versió inicial.                               \\
+//         0.2 (2020/11/03) Rebre part del codi de Phase7.sqf:            \\
+//                           -Eliminar triggers de control dels objectius \\ 
+//                           -Assignar la següent tasca                   \\ 
+//                           -Bombardejar zona extracció objectius        \\
+//                          Eliminar passar a fase 7                      \\                                
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
 //---------------------------------FASE 6---------------------------------\\
-//---------------------------Extracció presoners--------------------------\\
+//---------Extracció presoners, bombardeig de la zona i crear tasca-------\\
 //------------------------------------------------------------------------\\
 
 //------------------------------------------------------------------------\\
@@ -58,12 +63,20 @@ if (alive obj5) then {obj5 allowDamage false;};
 if (alive obj6) then {obj6 allowDamage false;};
 
 //------------------------------------------------------------------------\\
-//-----------------------PASSAR A SEGÜENT FASE (7)------------------------\\
+//-----------------------ASSIGNAR LA SEGÜENT TASCA------------------------\\
 //------------------------------------------------------------------------\\
 
 sleep 10;
 
-missionPhase = 7;
+[true, ["tsk_mExtP"],"", [1050.875,674.979,0], "ASSIGNED",-1, true, "walk"] 
+call BIS_fnc_taskCreate;
+
+//------------------------------------------------------------------------\\
+//--------------ELIMINAR TRIGGERS DE CONTROL DELS OBJECTIUS---------------\\
+//------------------------------------------------------------------------\\
+
+deleteVehicle all_obj_dead;
+deleteVehicle obj_dead;
 
 //------------------------------------------------------------------------\\
 //-------------------MOSTRAR MISSATGE DE L'HELICÒPTER---------------------\\
@@ -73,11 +86,24 @@ missionPhase = 7;
  
 heli5 sidechat "Vemos una columna de vehiculos dirigiendose a vuestra posicion";
 
+
+//------------------------------------------------------------------------\\
+//------------------BOMBARDEJAR ZONA EXTRACCIÓ OBJECTIUS------------------\\
+//------------------------------------------------------------------------\\
+
+sleep 10;
+
+[[3793, 4933, 0], "rhs_ammo_d832du", 50, 5, 3] spawn BIS_fnc_fireSupportVirtual;
+
+sleep 20;
+
+[[3793, 4933, 0], "rhs_ammo_3vo18", 50, 10, 2] spawn BIS_fnc_fireSupportVirtual;
+
 //-------------------------------------------------------------------------\\
 //-------------------------ELIMINAR HELICÒPTER 5---------------------------\\
 //-------------------------------------------------------------------------\\
  
- sleep 90;
+ sleep 60;
 
  {deleteVehicle _x} forEach crew (heli5) + [heli5]
  
