@@ -20,9 +20,9 @@ class Header
 //--------------------------PANTALLA DE CÀRREGA---------------------------\\
 //------------------------------------------------------------------------\\
 
-onLoadName = "Operation Shield Gate";                                      // Nom de la missió (apareix en gran)
+onLoadName = "Prólogo";                                                    // Nom de la missió (apareix en gran)
 onLoadMission = "Always Faithful, Always Forward - MARSOC";                // Descripció breu de la missió
-author = "CE_Arnau002";                                                    // Autor
+author = "Arnau002";                                                       // Autor
 loadScreen = "textures\portada.jpg";                                       // Imatge mentre es carrega la missió
 overviewPicture = "textures\portada.jpg";                                  // Imatge que es mostra al seleccionar la missió.
                                                                            // Ha d'estar en format .paa i aspecte 2:1

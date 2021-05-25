@@ -1,3 +1,13 @@
+0.2: 14 de setembre de 2020
+
+-Adaptació de la partida a ACE Legacy
+-Correcció de l'error en el que apareixia una bengala per cada jugador durant el bombardeig de la Fase 7
+-Canvi Zeus Owner de steam ID a #adminLogged
+-Canvi model heli5 (de 1H-1Y (MG) a (Unarmed)) 
+-Retirada dels míssils del pln1
+-Canvi en la manera d'activar les animacions dels objectius utilitzant 3den Enhanced
+-Canvi onLoadName (description.ext) de "Operation Shield Gate" a "Prólogo"  
+
 0.1.1: 15 d'abril de 2020
 
 -Versió Original

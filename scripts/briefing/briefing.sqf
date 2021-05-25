@@ -12,9 +12,9 @@ private ["_creditos", "_meteorologia", "_logistica", "_ejecucion", "_intel", "_m
 //------------------------------------------------------------------------\\
 
 _credits = player createDiaryRecord ["Diary",["Créditos",
-"Misión creada por <font color='#FFFF00'>CE_Arnau002</font> para la comunidad del <font color='#FFFF00'>Comando Épsilon</font>.
+"Misión creada por <font color='#FFFF00'>Arnau002</font> para la comunidad del <font color='#FFFF00'>Comando Épsilon</font>.
 <br/><br/>
-Quiero agradecer la ayuda de <font color='#FFFF00'>Davidaf</font> en el proceso de creación y a <font color='#FFFF00'>RenderDino</font> por su ayuda en el testeo.
+Quiero agradecer la ayuda de <font color='#FFFF00'>Davidaf</font> y <font color='#FFFF00'>Monika</font> en el proceso de creación y junto a <font color='#FFFF00'>RenderDino</font> por su ayuda en el testeo.
 <br/><br/>
 En la creación de la misión se han usado scripts creados por <font color='#FFFF00'>Magnetar</font>.
 "]];
