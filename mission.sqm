@@ -1,4 +1,4 @@
-version=53;
+version=54;
 class EditorData
 {
 	moveGridStep=1;
@@ -6,6 +6,10 @@ class EditorData
 	scaleGridStep=1;
 	autoGroupingDist=10;
 	toggles=1;
+	mods[]=
+	{
+		"3denEnhanced"
+	};
 	class ItemIDProvider
 	{
 		nextID=1860;
@@ -16,13 +20,14 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={-6334.4189,90.472565,9686.2383};
-		dir[]={0.72258312,-0.25297374,-0.64334822};
-		up[]={0.18894283,0.96747214,-0.16822428};
-		aside[]={-0.66497761,1.2730015e-007,-0.74687737};
+		pos[]={-6306.9795,36.233082,9680.4512};
+		dir[]={-0.43515411,-0.33665428,0.83506471};
+		up[]={-0.15557574,0.9416272,0.29855162};
+		aside[]={0.88682806,1.9354047e-008,0.46212795};
 	};
 };
 binarizationWanted=0;
+sourceName="OPSG_00_Prologo";
 addons[]=
 {
 	"A3_Boat_F_Jets_Carrier_01",
@@ -89,6 +94,8 @@ addons[]=
 	"ace_parachute",
 	"ace_kestrel4500",
 	"ace_atragmx",
+	"ace_rangecard",
+	"ffaa_armas",
 	"ace_explosives",
 	"A3_Weapons_F_Explosives",
 	"ace_trenches",
@@ -101,7 +108,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=56;
+		items=58;
 		class Item0
 		{
 			className="A3_Boat_F_Jets";
@@ -441,40 +448,53 @@ class AddonsMetaData
 		};
 		class Item50
 		{
+			className="ace_rangecard";
+			name="ACE3 - Range Card";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
+		};
+		class Item51
+		{
+			className="ffaa_armas";
+			name="ffaa_armas";
+			author="FFAA MOD Team";
+		};
+		class Item52
+		{
 			className="ace_explosives";
 			name="ACE3 - Explosives";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item51
+		class Item53
 		{
 			className="ace_trenches";
 			name="ACE3 - Trenches";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item52
+		class Item54
 		{
 			className="ace_sandbag";
 			name="ACE3 - Sand Bag";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item53
+		class Item55
 		{
 			className="rhsusf_c_melb";
 			name="MELB";
 			author="Red Hammer Studios";
 			url="http://www.rhsmods.org/";
 		};
-		class Item54
+		class Item56
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item55
+		class Item57
 		{
 			className="RHS_US_A2_AirImport";
 			name="RHSUSF A2 Air Ports";
@@ -482,6 +502,19 @@ class AddonsMetaData
 			url="http://www.rhsmods.org/";
 		};
 	};
+};
+dlcs[]=
+{
+	"Jets",
+	"RHS_USAF",
+	"Orange",
+	"LOP_LeightsOPFOR",
+	"RHS_AFRF",
+	"Kart",
+	"Heli",
+	"Expansion",
+	"Contact",
+	"Enoch"
 };
 randomSeed=11062797;
 class ScenarioData
@@ -5113,7 +5146,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase1.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=22;
 			type="EmptyDetectorAreaR50";
@@ -5541,6 +5573,7 @@ class Mission
 					flags=7;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj2";
 						class Inventory
 						{
@@ -5570,27 +5603,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -5616,7 +5630,7 @@ class Mission
 														"STRING"
 													};
 												};
-												value="STAND_TALKING";
+												value="LISTENING_1";
 											};
 										};
 										class Item1
@@ -5632,7 +5646,7 @@ class Mission
 												};
 												class value
 												{
-													items=2;
+													items=1;
 													class Item0
 													{
 														class data
@@ -5644,21 +5658,7 @@ class Mission
 																	"STRING"
 																};
 															};
-															value="Acts_CivilTalking_1";
-														};
-													};
-													class Item1
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="Acts_CivilTalking_2";
+															value="Acts_CivilListening_1";
 														};
 													};
 												};
@@ -5696,7 +5696,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -5715,7 +5715,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -5731,6 +5731,25 @@ class Mission
 										};
 									};
 									value=1.01;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -5762,6 +5781,7 @@ class Mission
 					flags=7;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj4";
 						class Inventory
 						{
@@ -5797,27 +5817,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -5909,7 +5910,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -5928,7 +5929,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -5944,6 +5945,25 @@ class Mission
 										};
 									};
 									value=0.99000001;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -5976,6 +5996,7 @@ class Mission
 					flags=7;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj6";
 						class Inventory
 						{
@@ -6007,27 +6028,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -6147,7 +6149,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -6166,7 +6168,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -6182,6 +6184,25 @@ class Mission
 										};
 									};
 									value=0.95999998;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -6233,6 +6254,7 @@ class Mission
 					flags=3;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj1";
 						class Inventory
 						{
@@ -6289,27 +6311,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -6499,7 +6502,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -6518,7 +6521,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -6534,6 +6537,25 @@ class Mission
 										};
 									};
 									value=0.98000002;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -6585,6 +6607,7 @@ class Mission
 					flags=3;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj3";
 						class Inventory
 						{
@@ -6620,27 +6643,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -6666,7 +6670,7 @@ class Mission
 														"STRING"
 													};
 												};
-												value="STAND_U1";
+												value="STAND_IDLE";
 											};
 										};
 										class Item1
@@ -6682,7 +6686,7 @@ class Mission
 												};
 												class value
 												{
-													items=5;
+													items=2;
 													class Item0
 													{
 														class data
@@ -6694,7 +6698,7 @@ class Mission
 																	"STRING"
 																};
 															};
-															value="hubstandingua_idle1";
+															value="Acts_CivilIdle_1";
 														};
 													};
 													class Item1
@@ -6708,49 +6712,7 @@ class Mission
 																	"STRING"
 																};
 															};
-															value="hubstandingua_idle2";
-														};
-													};
-													class Item2
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="hubstandingua_idle3";
-														};
-													};
-													class Item3
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="hubstandingua_move1";
-														};
-													};
-													class Item4
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="hubstandingua_move2";
+															value="Acts_CivilIdle_2";
 														};
 													};
 												};
@@ -6788,7 +6750,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -6807,7 +6769,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -6823,6 +6785,25 @@ class Mission
 										};
 									};
 									value=1.01;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -6958,7 +6939,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase3.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=187;
 			type="EmptyDetector";
@@ -7351,6 +7331,7 @@ class Mission
 					flags=7;
 					class Attributes
 					{
+						init="call{this disableAI ""Move""; }";
 						name="obj5";
 						class Inventory
 						{
@@ -7370,27 +7351,8 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_disableAI_move";
-							expression="if(_value) then {_this disableAI 'MOVE'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
+							expression="      if !(_value # 0 isEqualTo '') then      {        _value params ['_animSet', '_anims', '_canExit', '_attach'];                _this setVariable ['ENH_ambientAnimations_anims', _anims];        _this disableAI 'ANIM';        if (_attach && !is3DEN) then        {          private _logic = group _this createUnit ['Logic', getPosATL _this, [], 0, 'NONE'];          _this setVariable ['ENH_ambientAnimations_logic', _logic];          [_this, _logic] call BIS_fnc_attachToRelative;        };                ENH_fnc_ambientAnimations_play =        {          params ['_unit'];          private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims', []]);          [_unit, _anim] remoteExec ['switchMove', 0];        };                ENH_fnc_ambientAnimations_exit =        {          params ['_unit'];          if !(_unit getVariable ['ENH_ambientAnimations_exit', true]) exitWith {false};          _unit setVariable ['ENH_ambientAnimations_exit', true];          detach _unit;          deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic', objNull]);          [_unit, ''] remoteExec ['switchMove', 0];                    _unit enableAI 'ANIM';                    _unit removeEventHandler ['Killed', _unit getVariable ['ENH_EHKilled',-1]];          _unit removeEventHandler ['Dammaged', _unit getVariable ['ENH_EHDammaged',-1]];          _unit removeEventHandler ['AnimDone', _unit getVariable ['ENH_EHAnimDone',-1]];        };                private _EHAnimDone = _this addEventHandler ['AnimDone',          {            params ['_unit'];            if (alive _unit) then            {              _unit call ENH_fnc_ambientAnimations_play;            }            else            {              _unit call ENH_fnc_ambientAnimations_exit;            };          }        ];        _this setVariable ['ENH_EHAnimDone', _EHAnimDone];                if (_canExit && !is3DEN) then        {          private _EHKilled = _this addEventHandler ['Killed',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHKilled', _EHKilled];          private _EHDammaged = _this addEventHandler ['Dammaged',          {            (_this select 0) call ENH_fnc_ambientAnimations_exit;          }];          _this setVariable ['ENH_EHDammaged', _EHDammaged];          _this spawn          {            scriptName 'ENH_Attribute_AmbientAnimations';            params ['_unit'];            waitUntil            {              sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit', false]) || {behaviour _unit == 'COMBAT'}            };            _unit call ENH_fnc_ambientAnimations_exit;          };        };        _this call ENH_fnc_ambientAnimations_play;      };";
 							class Value
 							{
 								class data
@@ -7510,7 +7472,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -7529,7 +7491,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -7545,6 +7507,25 @@ class Mission
 										};
 									};
 									value=1.04;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="ENH_allowSprint";
+							expression="_this allowSprint _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
 								};
 							};
 						};
@@ -8160,101 +8141,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="ENH_AmbientAnimations";
-							expression="		if !(_value # 0 isEqualTo '') then		{			_value params ['_animSet','_anims','_canExit','_attach'];						_this setVariable ['ENH_ambientAnimations_anims',_anims];			_this disableAI 'ANIM';			if (_attach && !is3DEN) then			{				private _logic = group _this createUnit ['Logic',getPosATL _this,[],0,'NONE'];				_this setVariable ['ENH_ambientAnimations_logic',_logic];				[_this,_logic] call BIS_fnc_attachToRelative;			};						ENH_fnc_ambientAnimations_play =			{				params ['_unit'];				private _anim = selectRandom (_unit getVariable ['ENH_ambientAnimations_anims',[]]);				[_unit,_anim] remoteExec ['switchMove',0];			};						ENH_fnc_ambientAnimations_exit =			{				params ['_unit'];				if !(_unit getVariable ['ENH_ambientAnimations_exit',true]) exitWith {false};				_unit setVariable ['ENH_ambientAnimations_exit',true];				detach _unit;				deleteVehicle (_unit getVariable ['ENH_ambientAnimations_logic',objNull]);				[_unit,''] remoteExec ['switchMove',0];								_unit enableAI 'ANIM';								_unit removeEventHandler ['Killed',_unit getVariable ['ENH_EHKilled',-1]];				_unit removeEventHandler ['Dammaged',_unit getVariable ['ENH_EHDammaged',-1]];				_unit removeEventHandler ['AnimDone',_unit getVariable ['ENH_EHAnimDone',-1]];			};						private _EHAnimDone = _this addEventHandler			[				'AnimDone',				{					params ['_unit'];					if (alive _unit) then					{						_unit call ENH_fnc_ambientAnimations_play;					}					else					{						_unit call ENH_fnc_ambientAnimations_exit;					};				}			];			_this setVariable ['ENH_EHAnimDone',_EHAnimDone];						if (_canExit) then			{				private _EHKilled = _this addEventHandler				[					'Killed',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHKilled',_EHKilled];				private _EHDammaged = _this addEventHandler				[					'Dammaged',					{						(_this select 0) call ENH_fnc_ambientAnimations_exit;					}				];				_this setVariable ['ENH_EHDammaged',_EHDammaged];				_this spawn				{					params ['_unit'];					waitUntil					{						sleep 1; (_unit getVariable ['ENH_ambientAnimations_exit',false]) || {behaviour _unit == 'COMBAT'}					};					_unit call ENH_fnc_ambientAnimations_exit;				};			};			_this call ENH_fnc_ambientAnimations_play;		};";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"ARRAY"
-										};
-									};
-									class value
-									{
-										items=4;
-										class Item0
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"STRING"
-													};
-												};
-												value="LEAN";
-											};
-										};
-										class Item1
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"ARRAY"
-													};
-												};
-												class value
-												{
-													items=1;
-													class Item0
-													{
-														class data
-														{
-															class type
-															{
-																type[]=
-																{
-																	"STRING"
-																};
-															};
-															value="inbasemoves_lean1";
-														};
-													};
-												};
-											};
-										};
-										class Item2
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"BOOL"
-													};
-												};
-												value=1;
-											};
-										};
-										class Item3
-										{
-											class data
-											{
-												class type
-												{
-													type[]=
-													{
-														"BOOL"
-													};
-												};
-												value=0;
-											};
-										};
-									};
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -8272,7 +8158,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -8291,7 +8177,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						nAttributes=2;
 					};
 				};
 			};
@@ -9443,7 +9329,6 @@ class Mission
 				sizeB=234;
 				activationType="GUER D";
 				activationBy="WEST";
-				isServerOnly=1;
 			};
 			id=383;
 			type="EmptyDetectorAreaR50";
@@ -9511,26 +9396,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="ENH_disableAI_lights";
-							expression="if(_value) then {_this disableAI 'LIGHTS'}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						nAttributes=3;
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -9666,7 +9532,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase5.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=461;
 			type="EmptyDetector";
@@ -9685,7 +9550,6 @@ class Mission
 				sizeB=0;
 				repeatable=1;
 				activationBy="ALPHA";
-				isServerOnly=1;
 			};
 			id=474;
 			type="EmptyDetector";
@@ -9782,7 +9646,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase6.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=512;
 			type="EmptyDetector";
@@ -10130,7 +9993,7 @@ class Mission
 			colorName="ColorBlue";
 			alpha=0;
 			id=689;
-			atlOffset=62.162064;
+			atlOffset=62.162102;
 		};
 		class Item80
 		{
@@ -10144,7 +10007,6 @@ class Mission
 				onActivation="call{missionPhase = 1; }";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=691;
 			type="EmptyDetector";
@@ -10189,7 +10051,7 @@ class Mission
 					};
 					id=731;
 					type="B_UAV_AI";
-					atlOffset=0.0088539124;
+					atlOffset=0.0088558197;
 				};
 			};
 			class Attributes
@@ -10218,7 +10080,7 @@ class Mission
 				};
 			};
 			id=729;
-			atlOffset=0.0088539124;
+			atlOffset=0.0088558197;
 		};
 		class Item83
 		{
@@ -10238,7 +10100,7 @@ class Mission
 			};
 			id=730;
 			type="B_Ship_Gun_01_F";
-			atlOffset=0.0088539124;
+			atlOffset=0.0088558197;
 		};
 		class Item84
 		{
@@ -10325,7 +10187,6 @@ class Mission
 				onActivation="call{missionPhase = 3;}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=760;
 			type="EmptyDetectorAreaR50";
@@ -10505,7 +10366,6 @@ class Mission
 				sizeA=123;
 				sizeB=123;
 				activationBy="ANYPLAYER";
-				isServerOnly=1;
 			};
 			id=790;
 			type="EmptyDetectorAreaR250";
@@ -10522,7 +10382,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase4-7.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=795;
 			type="EmptyDetectorAreaR50";
@@ -10540,11 +10399,10 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase7.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=805;
 			type="EmptyDetector";
-			atlOffset=22.284874;
+			atlOffset=22.285822;
 		};
 		class Item93
 		{
@@ -10575,7 +10433,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase8.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=846;
 			type="EmptyDetector";
@@ -10593,7 +10450,6 @@ class Mission
 				onActivation="call{execVM ""scripts\missionPhase\Phase9.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=847;
 			type="EmptyDetector";
@@ -10946,7 +10802,6 @@ class Mission
 				onActivation="call{hq sidechat ""Acaban de salir los helicopteros, llegaran en pocos minutos"";}";
 				sizeA=600;
 				sizeB=250;
-				isServerOnly=1;
 			};
 			id=1098;
 			type="EmptyDetectorAreaR250";
@@ -10964,7 +10819,6 @@ class Mission
 				onActivation="call{missionPhase = 8;}";
 				sizeA=100;
 				sizeB=150;
-				isServerOnly=1;
 			};
 			id=1100;
 			type="EmptyDetectorAreaR50";
@@ -13766,7 +13620,6 @@ class Mission
 				onActivation="call{objAlive = objAlive - 1;}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=1200;
 			type="EmptyDetector";
@@ -14004,11 +13857,10 @@ class Mission
 				onActivation="call{execVM ""scripts\endMission\endMission.sqf"";}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=1217;
 			type="EmptyDetector";
-			atlOffset=18.948891;
+			atlOffset=18.94875;
 		};
 		class Item155
 		{
@@ -14293,7 +14145,7 @@ class Mission
 					};
 					id=1233;
 					type="B_UAV_AI";
-					atlOffset=4.1007996e-005;
+					atlOffset=4.0054321e-005;
 				};
 			};
 			class Attributes
@@ -14322,7 +14174,7 @@ class Mission
 				};
 			};
 			id=1232;
-			atlOffset=4.1007996e-005;
+			atlOffset=4.0054321e-005;
 		};
 		class Item166
 		{
@@ -14342,7 +14194,7 @@ class Mission
 			};
 			id=1234;
 			type="B_Ship_Gun_01_F";
-			atlOffset=4.1007996e-005;
+			atlOffset=4.0054321e-005;
 		};
 		class Item167
 		{
@@ -14496,7 +14348,7 @@ class Mission
 					};
 					id=1242;
 					type="B_UAV_AI";
-					atlOffset=0.00018501282;
+					atlOffset=0.00019454956;
 				};
 			};
 			class Attributes
@@ -22314,7 +22166,7 @@ class Mission
 								optics="rhsusf_acc_premier";
 								class primaryMuzzleMag
 								{
-									name="rhsusf_mag_10Rnd_STD_50BMG_M33";
+									name="rhsusf_mag_10Rnd_STD_50BMG_mk211";
 									ammoLeft=10;
 								};
 							};
@@ -22347,7 +22199,7 @@ class Mission
 								};
 								class ItemCargo
 								{
-									items=9;
+									items=10;
 									class Item0
 									{
 										name="rhsusf_ANPVS_15";
@@ -22393,6 +22245,11 @@ class Mission
 										name="ACE_epinephrine";
 										count=1;
 									};
+									class Item9
+									{
+										name="ACE_RangeCard";
+										count=1;
+									};
 								};
 							};
 							class vest
@@ -22401,18 +22258,30 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
-									{
-										name="rhsusf_mag_10Rnd_STD_50BMG_M33";
-										count=3;
-										ammoLeft=10;
-									};
-									class Item1
 									{
 										name="rhsusf_mag_17Rnd_9x19_FMJ";
 										count=2;
 										ammoLeft=17;
+									};
+									class Item1
+									{
+										name="ffaa_127x99_ap";
+										count=2;
+										ammoLeft=5;
+									};
+									class Item2
+									{
+										name="rhsusf_mag_10Rnd_STD_50BMG_mk211";
+										count=2;
+										ammoLeft=10;
+									};
+									class Item3
+									{
+										name="ffaa_127x99_he";
+										count=3;
+										ammoLeft=5;
 									};
 								};
 								class ItemCargo
@@ -22443,7 +22312,7 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ACE_Altimeter";
-							radio="tf_anprc152";
+							radio="tf_anprc152_3";
 							goggles="rhs_googles_black";
 							headgear="rhs_Booniehat_m81";
 						};
@@ -22602,7 +22471,7 @@ class Mission
 								};
 								class ItemCargo
 								{
-									items=7;
+									items=8;
 									class Item0
 									{
 										name="ACE_ATragMX";
@@ -22638,12 +22507,17 @@ class Mission
 										name="ACE_tourniquet";
 										count=1;
 									};
+									class Item7
+									{
+										name="ACE_RangeCard";
+										count=1;
+									};
 								};
 							};
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="tf_microdagr";
-							radio="tf_rf7800str";
+							radio="tf_rf7800str_10";
 							goggles="rhs_googles_black";
 							headgear="rhs_Booniehat_m81";
 						};
@@ -26718,7 +26592,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""rhs_weap_M136_hedp""],[5]],[[""rhs_mag_m67"",""rhs_mag_an_m8hc"",""rhs_mag_m18_green"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mag_m18_purple"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m714_White"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhsusf_mag_10Rnd_STD_50BMG_M33"",""rhs_mag_20Rnd_SCAR_762x51_m80_ball"",""rhsusf_200rnd_556x45_M855_box"",""rhsusf_20Rnd_762x51_SR25_m118_special_Mag"",""rhs_mag_M433_HEDP"",""rhs_mag_M397_HET"",""rhs_mag_m4009"",""rhs_mag_m576"",""rhs_mag_30Rnd_556x45_Mk318_Stanag""],[15,30,10,10,10,10,5,5,4,5,5,5,15,15,10,15,20,20,20,20,40]],[[],[]],[[],[]]],false]";
+							value="[[[[""rhs_weap_M136_hedp""],[5]],[[""rhs_mag_m67"",""rhs_mag_an_m8hc"",""rhs_mag_m18_green"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mag_m18_purple"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m714_White"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_20Rnd_SCAR_762x51_m80_ball"",""rhsusf_200rnd_556x45_M855_box"",""rhsusf_20Rnd_762x51_SR25_m118_special_Mag"",""rhs_mag_M433_HEDP"",""rhs_mag_M397_HET"",""rhs_mag_m4009"",""rhs_mag_m576"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""ffaa_127x99_ap"",""ffaa_127x99_he"",""rhsusf_mag_10Rnd_STD_50BMG_mk211""],[15,30,10,10,10,10,5,5,4,5,5,5,15,10,15,20,20,20,20,40,10,10,10]],[[],[]],[[],[]]],false]";
 						};
 					};
 				};
@@ -26780,7 +26654,6 @@ class Mission
 				sizeC=2;
 				activationBy="ANYPLAYER";
 				isRectangle=1;
-				isServerOnly=1;
 			};
 			id=1550;
 			type="EmptyDetectorAreaR50";
@@ -26802,7 +26675,6 @@ class Mission
 				sizeC=2;
 				activationBy="ANYPLAYER";
 				isRectangle=1;
-				isServerOnly=1;
 			};
 			id=1551;
 			type="EmptyDetectorAreaR50";
@@ -27963,7 +27835,6 @@ class Mission
 				onActivation="call{objAlive = objAlive - 1;}";
 				sizeA=0;
 				sizeB=0;
-				isServerOnly=1;
 			};
 			id=1662;
 			type="EmptyDetector";
@@ -28161,7 +28032,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 7, 7] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1714;
 			type="EmptyDetectorAreaR50";
@@ -28178,7 +28048,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 11, 4] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1719;
 			type="EmptyDetector";
@@ -28194,7 +28063,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 250, 8, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=350;
 				sizeB=350;
-				isServerOnly=1;
 			};
 			id=1720;
 			type="EmptyDetector";
@@ -28210,7 +28078,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 200, 6, 3] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1721;
 			type="EmptyDetector";
@@ -28219,7 +28086,7 @@ class Mission
 		class Item235
 		{
 			dataType="Trigger";
-			position[]={1489.5458,0,3318.2786};
+			position[]={1489.546,-0.00017929077,3318.2791};
 			class Attributes
 			{
 				name="trgM5";
@@ -28227,11 +28094,10 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1722;
 			type="EmptyDetector";
-			atlOffset=43.265255;
+			atlOffset=43.264999;
 		};
 		class Item236
 		{
@@ -28244,7 +28110,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 200, 5, 4] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1723;
 			type="EmptyDetector";
@@ -28253,7 +28118,7 @@ class Mission
 		class Item237
 		{
 			dataType="Trigger";
-			position[]={1425.0348,38.379391,3086.6257};
+			position[]={1425.035,38.379402,3086.626};
 			class Attributes
 			{
 				name="trgM7";
@@ -28261,11 +28126,10 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1724;
 			type="EmptyDetector";
-			atlOffset=67.889977;
+			atlOffset=67.890007;
 		};
 		class Item238
 		{
@@ -28278,7 +28142,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1725;
 			type="EmptyDetector";
@@ -28295,7 +28158,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 6, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1726;
 			type="EmptyDetector";
@@ -28312,7 +28174,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 8, 4] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1727;
 			type="EmptyDetector";
@@ -28329,7 +28190,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 3, 10] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1728;
 			type="EmptyDetector";
@@ -28346,7 +28206,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 200, 12, 4] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1729;
 			type="EmptyDetector";
@@ -28363,7 +28222,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 200, 9, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1730;
 			type="EmptyDetector";
@@ -28380,7 +28238,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 7, 7] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=250;
 				sizeB=250;
-				isServerOnly=1;
 			};
 			id=1731;
 			type="EmptyDetector";
@@ -28389,7 +28246,7 @@ class Mission
 		class Item245
 		{
 			dataType="Trigger";
-			position[]={1382.5164,73.19706,2852.0408};
+			position[]={1382.516,73.197403,2852.041};
 			class Attributes
 			{
 				name="trgM15";
@@ -28397,11 +28254,10 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1732;
 			type="EmptyDetector";
-			atlOffset=100.45757;
+			atlOffset=100.458;
 		};
 		class Item246
 		{
@@ -28414,7 +28270,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 5, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1733;
 			type="EmptyDetector";
@@ -28431,7 +28286,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 3, 8] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=400;
 				sizeB=400;
-				isServerOnly=1;
 			};
 			id=1734;
 			type="EmptyDetector";
@@ -28448,7 +28302,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 4, 6] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=250;
 				sizeB=250;
-				isServerOnly=1;
 			};
 			id=1735;
 			type="EmptyDetector";
@@ -28465,7 +28318,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1736;
 			type="EmptyDetector";
@@ -28482,7 +28334,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 10, 5, 10] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=150;
 				sizeB=150;
-				isServerOnly=1;
 			};
 			id=1737;
 			type="EmptyDetector";
@@ -28499,7 +28350,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 5, 6, 8] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1738;
 			type="EmptyDetector";
@@ -28516,7 +28366,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 10, 2, 25] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=150;
 				sizeB=150;
-				isServerOnly=1;
 			};
 			id=1739;
 			type="EmptyDetector";
@@ -28533,7 +28382,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 3, 5, 10] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1740;
 			type="EmptyDetector";
@@ -28550,7 +28398,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 2, 3, 15] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1741;
 			type="EmptyDetector";
@@ -28567,7 +28414,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 90, 5, 8] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1742;
 			type="EmptyDetector";
@@ -28584,7 +28430,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 100, 5, 9] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1743;
 			type="EmptyDetector";
@@ -28593,7 +28438,7 @@ class Mission
 		class Item257
 		{
 			dataType="Trigger";
-			position[]={1320.9379,95.919823,2618.9224};
+			position[]={1320.938,95.919807,2618.9221};
 			class Attributes
 			{
 				name="trgHE9";
@@ -28601,11 +28446,10 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3of56"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1744;
 			type="EmptyDetector";
-			atlOffset=127.05006;
+			atlOffset=127.05;
 		};
 		class Item258
 		{
@@ -28618,7 +28462,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 5, 8] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1745;
 			type="EmptyDetector";
@@ -28635,7 +28478,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 300, 5, 7] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1746;
 			type="EmptyDetector";
@@ -28652,7 +28494,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 6, 5] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1747;
 			type="EmptyDetector";
@@ -28669,7 +28510,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 150, 5, 6] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=300;
 				sizeB=300;
-				isServerOnly=1;
 			};
 			id=1748;
 			type="EmptyDetector";
@@ -28678,7 +28518,7 @@ class Mission
 		class Item262
 		{
 			dataType="Trigger";
-			position[]={1254.9608,95.587303,2398.999};
+			position[]={1254.9611,95.587692,2399};
 			class Attributes
 			{
 				name="trgM23";
@@ -28686,16 +28526,15 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=110;
 				sizeB=110;
-				isServerOnly=1;
 			};
 			id=1749;
 			type="EmptyDetector";
-			atlOffset=121.30665;
+			atlOffset=121.307;
 		};
 		class Item263
 		{
 			dataType="Trigger";
-			position[]={1161.127,61.366261,2419.5251};
+			position[]={1161.127,61.366428,2419.5249};
 			class Attributes
 			{
 				name="trgM24";
@@ -28703,16 +28542,15 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1750;
 			type="EmptyDetector";
-			atlOffset=101.86382;
+			atlOffset=101.864;
 		};
 		class Item264
 		{
 			dataType="Trigger";
-			position[]={1052.6313,46.735615,2432.7202};
+			position[]={1052.631,46.735775,2432.72};
 			class Attributes
 			{
 				name="trgM25";
@@ -28720,11 +28558,10 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=120;
 				sizeB=120;
-				isServerOnly=1;
 			};
 			id=1751;
 			type="EmptyDetector";
-			atlOffset=94.944817;
+			atlOffset=94.945;
 		};
 		class Item265
 		{
@@ -28737,7 +28574,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1752;
 			type="EmptyDetector";
@@ -28754,7 +28590,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1753;
 			type="EmptyDetector";
@@ -28771,7 +28606,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1754;
 			type="EmptyDetector";
@@ -28788,7 +28622,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1755;
 			type="EmptyDetector";
@@ -28805,7 +28638,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1756;
 			type="EmptyDetector";
@@ -28822,7 +28654,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1757;
 			type="EmptyDetector";
@@ -28839,7 +28670,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1758;
 			type="EmptyDetector";
@@ -28856,7 +28686,6 @@ class Mission
 				onActivation="call{[getpos thisTrigger, ""rhs_ammo_3vo18"", 1, 1, 1] spawn BIS_fnc_fireSupportVirtual; deletevehicle thisTrigger;}";
 				sizeA=100;
 				sizeB=100;
-				isServerOnly=1;
 			};
 			id=1759;
 			type="EmptyDetector";

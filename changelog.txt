@@ -1,3 +1,11 @@
+0.3.1: 7 de juliol de 2021
+
+-Treure la simulació "Server Only" de tots els triggers
+-Afegir Range Card a Franctirador M107 i Observador M110
+-Canviar la munició del Franctirador M107 de  4 carregadors de M33 (RHS) a  3 carregadors de MK211 (RHS), 2 de Armor-Piercing (FFAA) i 3 de Explosive (FFAA)
+-Canviar la munició de franctirador de la caixa de munició als tipus de munició utilitzada per el rol Franctirador M107 
+-Treure l'habilitat dels objectius per caminar (no haurien de poder fugir corrents si se'ls allibera per accident quan estan capturats)
+
 0.3: 5 de novembre de 2020
 
 -Eliminació dels ";" a les condicions dels triggers
