@@ -1,7 +1,7 @@
 //========================================================================\\
 // Arxiu: obj_surrender1.sqf                                              \\                
 // Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Versió: 0.2                                                            \\                               
 // Creació del Document: 10/04/2020                                       \\                              
 // Descripció: Activa "Set Captive" als Objectius de la Sala 1            \\
 // Canvis: 0.1 (2020/04/10) Versió inicial.                               \\ 

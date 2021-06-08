@@ -1,7 +1,7 @@
 //========================================================================\\
 // Arxiu: Phase6.sqf                                                      \\                
 // Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Versió: 0.3                                                            \\                               
 // Creació del Document: 04/04/2020                                       \\                              
 // Descripció: Extracció presoners, bombardeig de la zona i crear tasca   \\
 // Canvis: 0.1 (2020/04/04) Versió inicial.                               \\
@@ -9,7 +9,8 @@
 //                           -Eliminar triggers de control dels objectius \\ 
 //                           -Assignar la següent tasca                   \\ 
 //                           -Bombardejar zona extracció objectius        \\
-//                          Eliminar passar a fase 7                      \\                                
+//                          Eliminar passar a fase 7                      \\ 
+//		   0.3 (2021/06/08) Canviar munició fum morter                               
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -93,7 +94,7 @@ heli5 sidechat "Vemos una columna de vehiculos dirigiendose a vuestra posicion";
 
 sleep 10;
 
-[[3793, 4933, 0], "rhs_ammo_d832du", 50, 5, 3] spawn BIS_fnc_fireSupportVirtual;
+[[3793, 4933, 0], "Smoke_82mm_AMOS_White", 50, 5, 3] spawn BIS_fnc_fireSupportVirtual;
 
 sleep 20;
 

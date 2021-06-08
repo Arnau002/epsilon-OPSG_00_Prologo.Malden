@@ -1,3 +1,11 @@
+0.3.2: 8 de juliol de 2021
+
+-Canviar la munició de fum que es dispara a la zona d'extracció dels objectius (Phase6.sqf) per una que no pugui fer mal als jugadors
+-Canviar obj5 de civil a independent
+-Augmentar 5db el colum de helimusic i extractionmusic
+-Corregir error ortogràfic (description -> class tsk_ext)
+-Canviar waypoints a la zona objectiu de "Seek and Destroy" a "Move" (Alpha 3-1 i 3-3)
+
 0.3.1: 7 de juliol de 2021
 
 -Treure la simulació "Server Only" de tots els triggers

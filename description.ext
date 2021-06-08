@@ -75,7 +75,7 @@ class CfgTaskDescriptions
 	class tsk_ext
 	{
 		title = Extraer Equipo;
-		description = No nos esperábamos encontrar representantes rusos a la reunión, nuestra inteligencia nos indicaba que sus contactos estaban aún en una fase inicial. Esperemos que la reacción rusa no sea demasiado contundente, en todo caso si veis fuerzas rusas en el área sólo tenéis permiso para disparar si ellos lo hacen primero. El helicóptero que os llevará a vosotros y a los prisioneros está de camino, en el mapa está marcada la zona de aterrizaje. Es un helicóptero grande, por lo tanto, os recomiendo dejar espacio para que pueda aterrizar con seguridad.;
+		description = No nos esperábamos encontrar representantes rusos en la reunión, nuestra inteligencia nos indicaba que sus contactos estaban aún en una fase inicial. Esperemos que la reacción rusa no sea demasiado contundente, en todo caso si veis fuerzas rusas en el área sólo tenéis permiso para disparar si ellos lo hacen primero. El helicóptero que os llevará a vosotros y a los prisioneros está de camino, en el mapa está marcada la zona de aterrizaje. Es un helicóptero grande, por lo tanto, os recomiendo dejar espacio para que pueda aterrizar con seguridad.;
 	};
 		
 	class tsk_extO
@@ -114,7 +114,7 @@ tracks[]={};
  class helimusic
  { 
  name = "helimusic"; 
- sound[] = {"\music\heli_music.ogg", db+10, 1.0};
+ sound[] = {"\music\heli_music.ogg", db+15, 1.0};
  };
  
  class heli4music
@@ -132,7 +132,7 @@ tracks[]={};
   class extractionmusic
  { 
  name = "extractionmusic"; 
- sound[] = {"\music\extraction_music.ogg", db+20, 1.0};
+ sound[] = {"\music\extraction_music.ogg", db+25, 1.0};
  }; 
 
  class victorymusic
