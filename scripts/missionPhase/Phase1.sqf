@@ -1,12 +1,16 @@
 //========================================================================\\
 // Arxiu: Phase1.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.3                                                            \\                               
 // Creació del Document: 03/04/2020                                       \\                              
 // Descripció: Inserció dels jugadors i teletransportar helicòpters de    \\
 //             tornada al portaavions                                     \\
 // Canvis: 0.1 (2020/04/03) Versió inicial.                               \\ 
-//         0.2 (2020/11/05) Canviar l'assignació de jugadors als arrays   \\                                
+//         0.2 (2020/11/05) Canviar l'assignació de jugadors als arrays   \\   
+//         0.3 (2021/06/09) Adaptació del codi per poder ser executat     \\
+//                          amb un trigger amb "Server Only"              \\   
+//                          Engegar motors helicòpters uns segons abans   \\  
+//                          Mostrar títol amb document extern (title.sqf) \\                           
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -26,35 +30,35 @@ private _onHeli3 = [];
 //--------ENGEGAR MOTORS HELICÒPTERS 1, 2, 3 I REPRODUIR GRABACIÓ---------\\
 //------------------------------------------------------------------------\\
 
-hq sidechat "Los helicopteros salen en 1 minuto";
+[hq, "Los helicopteros salen en 1 minuto"] remoteExec ["sideChat"];
 
 sleep 30;
 
-hq sidechat "30 segundos";
+[hq, "30 segundos"] remoteExec ["sideChat"];
 
-sleep 10;
+sleep 1;
 
-heli1 engineOn true; 
+heli1 engineOn true;
 
 sleep 1;
 
 heli2 engineOn true;
 
-sleep 4;
+sleep 3;
  
 heli3 engineOn true; 
 
-sleep 5;
+sleep 15;
 
-heli1 sidechat "Mike Preparado";
+[heli1, "Mike Preparado"] remoteExec ["sideChat"];
 
 sleep 3;
 
-heli2 sidechat "Sierra Preparado";
+[heli2, "Sierra Preparado"] remoteExec ["sideChat"];
 
 sleep 2;
 
-heli3 sidechat "Victor Preparado";
+[heli3, "Victor Preparado"] remoteExec ["sideChat"];
 
 sleep 5;
 
@@ -89,14 +93,7 @@ call BIS_fnc_taskCreate;
 
 sleep 13;
 
-[
-		[
-			["Operation Shield Gate","<t color = '#FFFFFF' align = 'right' shadow = '1' size = '1.2'>%1</t><br/>"],
-			[([([daytime] call BIS_fnc_TimeToString),0,4] call BIS_fnc_trimString) + " " + str(date select 2) + "." + str(date select 1) + "." + str(date select 0),"<t color = '#FCFCFC' align = 'right' shadow = '1' size = '1.0'>%1</t><br/>"],
-			["Oeste de Malden","<t color = '#FAFAFA' align = 'right' shadow = '1' size = '1.0'>%1</t>"]
-		],-safeZoneX,-safeZoneY
-] spawn BIS_fnc_typeText; 
-
+["scripts\title\title.sqf"] remoteExec ["execVM"];
 
 //------------------------------------------------------------------------\\
 //---------------------------REPRODUIR MUSICA-----------------------------\\
@@ -104,8 +101,7 @@ sleep 13;
 
 sleep 7.5;
 
-playMusic "helimusic";
-
+["helimusic"] remoteExec ["playMusic"];
 
 //------------------------------------------------------------------------\\
 //----------------ELIMINAR UNITATS AMBIENTACIÓ PORTAAVIONS----------------\\

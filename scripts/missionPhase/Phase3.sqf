@@ -1,10 +1,12 @@
 //========================================================================\\
 // Arxiu: Phase3.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.2                                                            \\                               
 // Creació del Document: 03/04/2020                                       \\                              
 // Descripció: Moviment helicòpter 4, destrucció i canvi de plans         \\
-// Canvis: 0.1 (2020/04/03) Versió inicial.                               \\                               
+// Canvis: 0.1 (2020/04/03) Versió inicial.                               \\  
+//         0.2 (2021/06/08) Adaptació del codi per poder ser executat     \\
+//                          amb un trigger amb "Server Only"              \\                               
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -41,10 +43,10 @@ sleep 20;
  
  sleep 52;
  
- playMusic "heli4music";
+ ["heli4music"] remoteExec ["playMusic"];
  
- heli4 sidechat "Llegamos en 1 Minuto";
- 
+ [heli4, "Llegamos en 1 Minuto"] remoteExec ["sideChat"];
+
 //-------------------------------------------------------------------------\\
 //----ENGEGAR MOTORS AVIÓ 1, REPRODUIR GRABACIÓ I CANVIAR COMPORTAMENT-----\\
 //-------------------------------------------------------------------------\\

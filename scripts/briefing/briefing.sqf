@@ -15,8 +15,6 @@ _credits = player createDiaryRecord ["Diary",["Créditos",
 "Misión creada por <font color='#FFFF00'>Arnau002</font> para la comunidad del <font color='#FFFF00'>Comando Épsilon</font>.
 <br/><br/>
 Quiero agradecer la ayuda de <font color='#FFFF00'>Davidaf</font> y <font color='#FFFF00'>Monika</font> en el proceso de creación y junto a <font color='#FFFF00'>RenderDino</font> por su ayuda en el testeo.
-<br/><br/>
-En la creación de la misión se han usado scripts creados por <font color='#FFFF00'>Magnetar</font>.
 "]];
 
 
@@ -57,7 +55,7 @@ _ejecucion = player createDiaryRecord ["Diary",["Ejecución",
 //------------------------------------------------------------------------\\
 
 _intel = player createDiaryRecord ["Diary",["Intel",
-"Las fuerzas enemigas disponen de pocos efectivos, repartidos por toda la isla. Nuestros informes nos indican que cuentan con poco equipamiento, básicamente vehículos ligeros y algunas piezas de artillería, sin blindados ni aviones.  "]];
+"Las fuerzas enemigas disponen de pocos efectivos, repartidos por toda la isla. Nuestros informes nos indican que cuentan con poco equipamiento, básicamente vehículos ligeros y algunas piezas de artillería, sin blindados ni aviones."]];
 
 
 //------------------------------------------------------------------------\\

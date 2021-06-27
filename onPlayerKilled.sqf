@@ -1,6 +1,6 @@
 //========================================================================\\
 // Arxiu: onPlayerKilled.sqf                                              \\                
-// Autor: CE_Arnau002                                                     \\                              
+// Autor: Arnau002                                                        \\                              
 // Versió: 0.1                                                            \\                               
 // Creació del Document: 13/04/2020                                       \\                              
 // Descripció: Document que s'executa automàticament quan mor un jugador  \\

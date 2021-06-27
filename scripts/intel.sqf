@@ -1,6 +1,6 @@
 //========================================================================\\
 // Arxiu: intel.sqf                                                       \\                
-// Autor: CE_Arnau002                                                     \\                              
+// Autor: Arnau002                                                        \\                              
 // Versió: 0.1                                                            \\                               
 // Creació del Document: 06/04/2020                                       \\                              
 // Descripció: Crea la tasca completada i elimina l'objecte que activa    \\

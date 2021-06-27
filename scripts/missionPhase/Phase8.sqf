@@ -1,12 +1,14 @@
 //========================================================================\\
 // Arxiu: Phase8.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.3                                                            \\                               
 // Creació del Document: 08/04/2020                                       \\                              
 // Descripció: Entrada helicòpters 1, 2 i 3 per extreure Jugadors         \\
 // Canvis: 0.1 (2020/04/08) Versió inicial.                               \\
 //         0.2 (2020/11/03) Passar el missage d'arribada helis a l'editor \\ 
-//                          Eliminar els waitUntil                        \\                               
+//                          Eliminar els waitUntil                        \\ 
+//         0.3 (2021/06/08) Adaptacio del codi per poder ser executat     \\
+//                          amb un trigger amb "Server Only"              \\                                
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -75,7 +77,7 @@ heli3 engineOn false;
 //-------------------MOSTRAR MISSATGE DE L'HELICÒPTER---------------------\\
 //------------------------------------------------------------------------\\
 
-heli1 sidechat "Subid a los helicopteros, salimos en 15 segundos";
+[heli1, "Subid a los helicopteros, salimos en 15 segundos"] remoteExec ["sideChat"];
 
 //------------------------------------------------------------------------\\
 //-----------------------PASSAR A SEGÜENT FASE (9)------------------------\\

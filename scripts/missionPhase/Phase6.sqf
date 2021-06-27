@@ -1,7 +1,7 @@
 //========================================================================\\
 // Arxiu: Phase6.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.3                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.4                                                            \\                               
 // Creació del Document: 04/04/2020                                       \\                              
 // Descripció: Extracció presoners, bombardeig de la zona i crear tasca   \\
 // Canvis: 0.1 (2020/04/04) Versió inicial.                               \\
@@ -10,7 +10,11 @@
 //                           -Assignar la següent tasca                   \\ 
 //                           -Bombardejar zona extracció objectius        \\
 //                          Eliminar passar a fase 7                      \\ 
-//		   0.3 (2021/06/08) Canviar munició fum morter                               
+//		   0.3 (2021/06/08) Canviar munició fum morter                    \\
+//         0.4 (2021/06/27) Adaptació del codi per poder ser executat     \\
+//                          amb un trigger amb "Server Only"              \\ 
+//                          Canvi del temps en el que tarda en            \\
+//                          caure l'artilleria                            \\
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -83,20 +87,19 @@ deleteVehicle obj_dead;
 //-------------------MOSTRAR MISSATGE DE L'HELICÒPTER---------------------\\
 //------------------------------------------------------------------------\\
  
- sleep 10;
+sleep 10; 
  
-heli5 sidechat "Vemos una columna de vehiculos dirigiendose a vuestra posicion";
-
+[heli5, "Vemos una columna de vehiculos dirigiendose a vuestra posicion"] remoteExec ["sideChat"];
 
 //------------------------------------------------------------------------\\
 //------------------BOMBARDEJAR ZONA EXTRACCIÓ OBJECTIUS------------------\\
 //------------------------------------------------------------------------\\
 
-sleep 10;
+sleep 15; 
 
 [[3793, 4933, 0], "Smoke_82mm_AMOS_White", 50, 5, 3] spawn BIS_fnc_fireSupportVirtual;
 
-sleep 20;
+sleep 40; 
 
 [[3793, 4933, 0], "rhs_ammo_3vo18", 50, 10, 2] spawn BIS_fnc_fireSupportVirtual;
 
@@ -104,7 +107,7 @@ sleep 20;
 //-------------------------ELIMINAR HELICÒPTER 5---------------------------\\
 //-------------------------------------------------------------------------\\
  
- sleep 60;
+ sleep 35; 
 
  {deleteVehicle _x} forEach crew (heli5) + [heli5]
  

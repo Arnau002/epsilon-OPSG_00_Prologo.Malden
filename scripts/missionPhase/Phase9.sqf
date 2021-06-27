@@ -1,10 +1,12 @@
 //========================================================================\\
 // Arxiu: Phase9.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.2                                                            \\                               
 // Creació del Document: 08/04/2020                                       \\                              
 // Descripció: Extracció jugadors i bombardeig americà de l'illa          \\
-// Canvis: 0.1 (2020/04/08) Versió inicial.                               \\                               
+// Canvis: 0.1 (2020/04/08) Versió inicial.                               \\
+//         0.2 (2021/06/08) Adaptacio del codi per poder ser executat     \\
+//                          amb un trigger ammb "Server Only"             \\                                 
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -16,7 +18,7 @@
 //---------------------------REPRODUIR MUSICA-----------------------------\\
 //------------------------------------------------------------------------\\
 
-playMusic "extractionmusic";
+["extractionmusic"] remoteExec ["playMusic"];
 
 //------------------------------------------------------------------------\\
 //--------ENGEGAR MOTORS HELICÒPTERS 1, 2, 3 I REPRODUIR GRABACIÓ---------\\

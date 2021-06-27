@@ -1,10 +1,12 @@
 //========================================================================\\
 // Arxiu: Phase5.sqf                                                      \\                
-// Autor: CE_Arnau002                                                     \\                              
-// Versió: 0.1                                                            \\                               
+// Autor: Arnau002                                                        \\                              
+// Versió: 0.2                                                            \\                               
 // Creació del Document: 04/04/2020                                       \\                              
 // Descripció: Moviment entrada helicòpter 5                              \\
-// Canvis: 0.1 (2020/04/04) Versió inicial.                               \\                               
+// Canvis: 0.1 (2020/04/04) Versió inicial.                               \\
+//         0.2 (2021/06/08) Adaptació del codi per poder ser executat     \\
+//                          amb un trigger amb "Server Only"              \\                                 
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -16,7 +18,7 @@
 //-------------ENGEGAR MOTOR HELICÒPTER 5 I REPRODUIR GRABACIÓ------------\\
 //------------------------------------------------------------------------\\
 
- sleep 126;
+sleep 126;
 
 heli5 engineOn true; 
 
@@ -28,31 +30,28 @@ rec = [] spawn wp_heli5_in;
 //-------------------MOSTRAR MISSATGE DE L'HELICÒPTER---------------------\\
 //------------------------------------------------------------------------\\
  
- sleep 14;
+sleep 14;
+[heli5, "Faltan 2 Minutos para Aterrizar"] remoteExec ["sideChat"];
  
- heli5 sidechat "Faltan 2 Minutos para Aterrizar";
- 
- sleep 60;
- 
- heli5 sidechat "1 Minuto";
+sleep 60;
+[heli5, "1 Minuto"] remoteExec ["sideChat"];
    
- sleep 30;
- 
- heli5 sidechat "30 Segundos";
+sleep 30;
+[heli5, "30 segundos"] remoteExec ["sideChat"];
 
 //------------------------------------------------------------------------\\
 //------------------------PARAR MOTOR HELICÒPTER 5 -----------------------\\
 //------------------------------------------------------------------------\\
  
- sleep 30;
+sleep 30;
  
- heli5 engineOn false;
+heli5 engineOn false;
  
 //------------------------------------------------------------------------\\
 //-----------------------PASSAR A SEGÜENT FASE (6)------------------------\\
 //------------------------------------------------------------------------\\
  
- missionPhase = 6;
+missionPhase = 6;
  
 //------------------------------------------------------------------------\\
 //--------------------------FINAL DEL DOCUMENT----------------------------\\

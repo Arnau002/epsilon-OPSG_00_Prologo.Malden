@@ -1,14 +1,28 @@
+0.4: 27 de juliol de 2021
+
+-Adaptació del codi per poder ser executat amb triggers amb l'opció "Server Only" activada
+-Canvi en la simulació de tots els triggers a "Server Only"
+-Canviar la manera com es creen les bengales de la Fase 7 a la mateixa utilitzada en versions anteriors a la 0.2
+-Passar a carregar el títol inicial a un document extern
+-Els helicòpters a l'inici de la missió engeguen els motors uns segons abans
+-Afegir com a condició dels triggers passar de fase 7 a 8 i passar a 7 que el nombre de jugadors vius sigui superior a 0 evitar que es dispari accidentalment a l'inici de partida
+-Assignar inventari dels jugadors amb script i assignar l'equipament de les caixes del portaavions segons els rols que s'utilitzen a la partida 
+-Crear fn_loadout.sqf per equipar als jugadors i les caixes, la funció s'inicialitza des de description.ext
+-Afegir configuració d'ACE3 al directori principal (cal importar-ho manualment des de l'editor)
+-Simplificar el codi del Zeus, eliminant la versió de Magnetar per una de pròpia
+-Canvi del temps en el que tarda en caure l'artilleria al marxar l'helicòpter d'extracció dels presoners(Fase 6)
+
 0.3.2: 8 de juliol de 2021
 
 -Canviar la munició de fum que es dispara a la zona d'extracció dels objectius (Phase6.sqf) per una que no pugui fer mal als jugadors
 -Canviar obj5 de civil a independent
--Augmentar 5db el colum de helimusic i extractionmusic
+-Augmentar 5db el volum de helimusic i extractionmusic
 -Corregir error ortogràfic (description -> class tsk_ext)
 -Canviar waypoints a la zona objectiu de "Seek and Destroy" a "Move" (Alpha 3-1 i 3-3)
 
 0.3.1: 7 de juliol de 2021
 
--Treure la simulació "Server Only" de tots els triggers
+-Treure la simulació "Server Only" de tots els triggers excepte els del bombardeig d'artilleria
 -Afegir Range Card a Franctirador M107 i Observador M110
 -Canviar la munició del Franctirador M107 de  4 carregadors de M33 (RHS) a  3 carregadors de MK211 (RHS), 2 de Armor-Piercing (FFAA) i 3 de Explosive (FFAA)
 -Canviar la munició de franctirador de la caixa de munició als tipus de munició utilitzada per el rol Franctirador M107 

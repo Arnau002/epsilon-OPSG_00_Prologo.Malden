@@ -1,6 +1,6 @@
 //========================================================================\\
 // Arxiu: obj_surrender2.sqf                                              \\                
-// Autor: CE_Arnau002                                                     \\                              
+// Autor: Arnau002                                                        \\                              
 // Versió: 0.2                                                            \\                               
 // Creació del Document: 10/04/2020                                       \\                              
 // Descripció: Activa "Set Captive" als Objectius de la Sala 2            \\

@@ -1,6 +1,6 @@
 //========================================================================\\
 // Arxiu: Phase4-7.sqf                                                    \\                
-// Autor: CE_Arnau002                                                     \\                              
+// Autor: Arnau002                                                        \\                              
 // Versió: 0.1                                                            \\                               
 // Creació del Document: 02/11/2020                                       \\                              
 // Descripció: Fracàs en l'extracció dels presoners al segon punt         \\
