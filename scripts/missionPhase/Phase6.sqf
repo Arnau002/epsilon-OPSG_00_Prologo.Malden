@@ -15,6 +15,8 @@
 //                          amb un trigger amb "Server Only"              \\ 
 //                          Canvi del temps en el que tarda en            \\
 //                          caure l'artilleria                            \\
+//		   0.5 (2022/07/31) Afegir bombardeig al sud-est de la zona       \\
+//                          d'extracció del objectius                     \\
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -95,19 +97,35 @@ sleep 10;
 //------------------BOMBARDEJAR ZONA EXTRACCIÓ OBJECTIUS------------------\\
 //------------------------------------------------------------------------\\
 
+sleep 5; 
+
+[[3834, 4708, 0], "Smoke_82mm_AMOS_White", 60, 4, [4, 5]] spawn BIS_fnc_fireSupportVirtual;
+
+sleep 8;
+
+[[3941, 4748, 0], "Smoke_82mm_AMOS_White", 60, 6, [4, 5]] spawn BIS_fnc_fireSupportVirtual;
+
+sleep 10;
+
+[[3864, 4741, 0], "rhs_ammo_3vo18", 50, 3, [3, 5]] spawn BIS_fnc_fireSupportVirtual;
+
 sleep 15; 
 
-[[3793, 4933, 0], "Smoke_82mm_AMOS_White", 50, 5, 3] spawn BIS_fnc_fireSupportVirtual;
+[[3823, 4820, 0], "rhs_ammo_3vo18", 55, 6, [3, 4]] spawn BIS_fnc_fireSupportVirtual;
 
-sleep 40; 
+sleep 12;
 
-[[3793, 4933, 0], "rhs_ammo_3vo18", 50, 10, 2] spawn BIS_fnc_fireSupportVirtual;
+[[3793, 4933, 0], "Smoke_82mm_AMOS_White", 65, 8, [3, 4]] spawn BIS_fnc_fireSupportVirtual;
+
+sleep 15;
+
+[[3793, 4933, 0], "rhs_ammo_3vo18", 60, 15, [1, 3]] spawn BIS_fnc_fireSupportVirtual;
 
 //-------------------------------------------------------------------------\\
 //-------------------------ELIMINAR HELICÒPTER 5---------------------------\\
 //-------------------------------------------------------------------------\\
  
- sleep 35; 
+ sleep 25; 
 
  {deleteVehicle _x} forEach crew (heli5) + [heli5]
  

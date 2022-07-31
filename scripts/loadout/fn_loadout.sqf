@@ -27,7 +27,9 @@
 //                  dem                 Demolicions                       \\
 //                  rep                 Reparacions                       \\
 //                                                                        \\
-// Canvis: 0.1 (2021/06/12) Versió inicial.                               \\                               
+// Canvis: 0.1 (2021/06/12) Versió inicial.                               \\
+//         0.2 (2021/07/02) Corregir classname pistola i canviar lloc on  \\
+//                          s'assigna al jugador                          \\             
 //========================================================================\\
 
 //------------------------------------------------------------------------\\
@@ -95,7 +97,7 @@ _rvgGripBlack = "rhsusf_acc_rvg_blk";
 _atHEDP = "rhs_weap_M136_hedp";
 
 //---------------------------------Pistoles-------------------------------\\
-_glock = "rhsusf_weap_glockg4";
+_glock = "rhsusf_weap_glock17g4";
 
 //--------------------------------Uniformes-------------------------------\\
 _m81 = "rhs_uniform_g3_m81";
@@ -242,10 +244,6 @@ if(_isInfantry) then
 	removeBackpack _unit;
 	removeHeadgear _unit;
 	removeGoggles _unit;	
-		
-	// Pistola 
-	_unit addWeapon _glock;
-	_unit addHandgunItem _glockMAG;
 	
 	// Uniforme
 	_unit forceaddUniform _m81;
@@ -361,7 +359,6 @@ switch (_unitType) do
 		// Ulleres i Casc
 		_unit addHeadgear _norotosAlt;
 		_unit addGoggles _googlesBlack;
-
 
 		// Prismàtics
 		_unit addWeapon _binoculars;
@@ -856,10 +853,14 @@ switch (_unitType) do
 	};
 };
 
-//-----------------------------Equip per Jugador--------------------------\\
+//------------------------Equip per Jugador i Pistola---------------------\\
 
 if(_isInfantry) then 
 {	
+	// Pistola 
+	_unit addWeapon _glock;
+	_unit addHandgunItem _glockMAG;	
+	
 	weaponsBox addItemCargoGlobal [_glockMAG, 1];
 	
 	equipmentBox addItemCargoGlobal [_flashlight, 1];

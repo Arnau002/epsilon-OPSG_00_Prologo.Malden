@@ -1,4 +1,12 @@
-0.4: 27 de juliol de 2021
+0.4.2 31 de juliol de 2022
+-Afegir un bombardeig previ al sud-est de la zona d'extracció dels objectius per facilitar que els jugador abandonin la zona abans del bombardeig principal sobre el complex
+
+0.4.1 2 de juliol de 2021
+-Canvi en la manera d'activar les animacions dels soldats al portaavions utilitzant 3den Enhanced
+-Coregir error en el clasname de la pistola al loadout
+
+
+0.4: 27 de juny de 2021
 
 -Adaptació del codi per poder ser executat amb triggers amb l'opció "Server Only" activada
 -Canvi en la simulació de tots els triggers a "Server Only"
@@ -12,7 +20,7 @@
 -Simplificar el codi del Zeus, eliminant la versió de Magnetar per una de pròpia
 -Canvi del temps en el que tarda en caure l'artilleria al marxar l'helicòpter d'extracció dels presoners(Fase 6)
 
-0.3.2: 8 de juliol de 2021
+0.3.2: 8 de juny de 2021
 
 -Canviar la munició de fum que es dispara a la zona d'extracció dels objectius (Phase6.sqf) per una que no pugui fer mal als jugadors
 -Canviar obj5 de civil a independent
@@ -20,7 +28,7 @@
 -Corregir error ortogràfic (description -> class tsk_ext)
 -Canviar waypoints a la zona objectiu de "Seek and Destroy" a "Move" (Alpha 3-1 i 3-3)
 
-0.3.1: 7 de juliol de 2021
+0.3.1: 7 de juny de 2021
 
 -Treure la simulació "Server Only" de tots els triggers excepte els del bombardeig d'artilleria
 -Afegir Range Card a Franctirador M107 i Observador M110
